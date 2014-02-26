@@ -1169,7 +1169,7 @@ var createInputHtml = function(name, autoform, defs, hash) {
       isMultiple = true;
     }
     if (noselect) {
-      html = "";
+      html = '<ul class="radio-container">';
       _.each(selectOptions, function(opt) {
         var checked, inputType, cl = "";
         if (isMultiple) {
@@ -1189,8 +1189,9 @@ var createInputHtml = function(name, autoform, defs, hash) {
         }
         if (framework === "bootstrap3")
           cl = inputType;
-        html += '<div class="' + cl + '"><label><input type="' + inputType + '" data-schema-key="' + name + '" name="' + name + '" value="' + opt.value + '"' + checked + objToAttributes(hash) + ' /> ' + opt.label + '</label></div>';
+        html += '<li><label><div class="' + cl + '"><input type="' + inputType + '" data-schema-key="' + name + '" name="' + name + '" value="' + opt.value + '"' + checked + objToAttributes(hash) + ' /><div></div></div><span> ' + opt.label + '</span></label></li>';
       });
+      html += '</ul>'
     } else {
       if (framework === "bootstrap3") {
         //add bootstrap's form-control class to input elements
