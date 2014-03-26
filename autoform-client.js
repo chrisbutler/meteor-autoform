@@ -1003,7 +1003,7 @@ var getSelectValues = function(select) {
 
 var createInputHtml = function(name, autoform, defs, hash) {
   var html;
-
+  console.log('here', autoform);
   //adjust expected type when type is overridden
   var schemaType = defs.type;
   var expectsArray = false;
@@ -1181,7 +1181,7 @@ var createInputHtml = function(name, autoform, defs, hash) {
           }
         } else {
           inputType = "radio";
-          if (opt.value.toString() === value.toString()) {
+          if ((!autoform._doc && opt.value.toString().toLowerCase() === value.toString().toLowerCase()) || (autoform._doc && autoform._doc[name].toString().toLowerCase() === opt.value.toString().toLowerCase())) {
             checked = ' checked';
           } else {
             checked = '';
@@ -1211,7 +1211,7 @@ var createInputHtml = function(name, autoform, defs, hash) {
             selected = '';
           }
         } else {
-          if (opt.value.toString() === value.toString()) {
+          if ((!autoform._doc && opt.value.toString().toLowerCase() === value.toString().toLowerCase()) || (autoform._doc && autoform._doc[name].toString().toLowerCase() === opt.value.toString().toLowerCase())) {
             selected = ' selected';
           } else {
             selected = '';
